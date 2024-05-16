@@ -5,9 +5,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template import engines
 
 from netbox.plugins import PluginTemplateExtension
-
+from django.contrib.contenttypes.models import ContentType
 from .utilities import get_img_b64, get_qr, get_qr_text, get_concat
-
+from .models import CustomURL
 
 class QRCode(PluginTemplateExtension):
 
@@ -15,7 +15,22 @@ class QRCode(PluginTemplateExtension):
         config = self.context['config']
         obj = self.context['object']
         request = self.context['request']
-        url = request.build_absolute_uri(obj.get_absolute_url())
+
+        # check to see if we have a custom url with a matched object
+        content_type = ContentType.objects.get_for_model(obj)
+        customurl_count = CustomURL.objects.filter(
+            assigned_object_type=content_type,
+            assigned_object_id=obj.pk).count()
+
+        if customurl_count == 1:
+            customurl = CustomURL.objects.filter(
+            assigned_object_type=content_type,
+            assigned_object_id=obj.pk)
+
+            values_list = customurl.values('dest_url')
+            url = values_list[0]['dest_url']
+        else:        
+            url = request.build_absolute_uri(obj.get_absolute_url())
         # get object settings
         obj_cfg = config.get(self.model.replace('dcim.', ''))
         if obj_cfg is None:
