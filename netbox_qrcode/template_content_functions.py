@@ -24,8 +24,7 @@ def config_for_modul(parentSelf, labelDesignNo):
 
     # Collect the QR code plugin configuration for the specific object such as device, rack etc.
     # and overwrite the default configuration fields.
-    obj_cfg = config.get(parentSelf.model.replace('dcim.', '')
-                                         .replace('netbox_inventory.', '') + confModulsufix) # get spezific object settings
+    obj_cfg = config.get(parentSelf.model.replace('dcim.', '').replace('netbox_inventory.', '') + confModulsufix) # get spezific object settings
     
     print(obj_cfg)
 
