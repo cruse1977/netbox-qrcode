@@ -11,9 +11,10 @@ RUN pip install --upgrade pip
 # -------------------------------------------------------------------------------------
 # Install NetBox
 # -------------------------------------------------------------------------------------
-RUN git clone --single-branch --branch ${netbox_ver} https://github.com/netbox-community/netbox.git /opt/netbox/ && \
+    RUN git clone --single-branch --branch ${netbox_ver} https://github.com/netbox-community/netbox.git /opt/netbox/ && \
     cd /opt/netbox/ && \
-    pip install -r /opt/netbox/requirements.txt
+    pip install -r /opt/netbox/requirements.txt && \
+    pip install https://github.com/ArnesSI/netbox-inventory/archive/master.tar.gz
 
 # -------------------------------------------------------------------------------------
 # Install Netbox Plugin
