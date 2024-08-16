@@ -148,6 +148,14 @@ class PowerPanelQRCode(QRCode):
 
     def right_page(self):
         return self.Create_PluginContent()
+    
+# Class for creating a QR code for the Plugin: netbox-inventory
+class PluginNetboxInventory(QRCode):
+    model = 'netbox_inventory.asset' # Info for Netbox in which model the plugin should be integrated.
+
+    def right_page(self):
+        return self.Create_PluginContent()
+
 
 # Connects Netbox Core with the plug-in classes
-template_extensions = [DeviceQRCode, RackQRCode, CableQRCode, LocationQRCode, PowerFeedQRCode, PowerPanelQRCode]
+template_extensions = [DeviceQRCode, RackQRCode, CableQRCode, LocationQRCode, PowerFeedQRCode, PowerPanelQRCode, PluginNetboxInventory]
