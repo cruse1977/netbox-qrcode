@@ -20,6 +20,8 @@ class QRCodeConfig(PluginConfig):
         # Text content
         'with_text': True,
         'text_location': 'right',
+        'text_align_horizontal': 'right',
+        'text_align_vertical': 'top',
         
         # Text source (Option A)
         'text_fields': ['name', 'serial'],
