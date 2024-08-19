@@ -20,8 +20,8 @@ class QRCodeConfig(PluginConfig):
         # Text content
         'with_text': True,
         'text_location': 'right',
-        'text_align_horizontal': 'right',
-        'text_align_vertical': 'top',
+        'text_align_horizontal': 'left',
+        'text_align_vertical': 'middle',
         
         # Text source (Option A)
         'text_fields': ['name', 'serial'],
@@ -101,7 +101,21 @@ class QRCodeConfig(PluginConfig):
             'text_fields': ['name']
         },   
 
-        'logo': ''  
+        'logo': '',  
+
+        'device_2': {
+            'with_qr': False,
+            'title': 'Example',
+            'font_size': '4mm',
+            'label_width': '56mm',
+            'label_height': '32mm',
+            'label_edge_top': '0mm',
+            'label_edge_left': '0mm',
+            'label_edge_right': '1mm',
+            'label_edge_bottom': '1mm',            
+            'text_align_horizontal': 'right',
+            'text_align_vertical': 'bottom',
+        },
     }
 
 config = QRCodeConfig # noqa E305
